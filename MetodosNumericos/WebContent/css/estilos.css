@@ -1,6 +1,8 @@
 .chartDiv {
 	height:400px;
 	width:300px;
+	margin-top: 30px;
+	display: none;
 }
 
 .tab-pane .form-horizontal {
