@@ -1,6 +1,6 @@
 package com.metodosNumericos.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -36,5 +36,4 @@ public class TestParser {
 		eL.setVariable("x", valorX);
 		assertEquals("El resultado de la evaluacion debe de ser 2.09183", 2.09183, eL.evaluate(),0.1);
 	}
-
 }

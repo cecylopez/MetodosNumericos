@@ -1,6 +1,7 @@
 package com.metodosNumericos.util;
 
 import org.apache.commons.math3.analysis.UnivariateFunction;
+import org.apache.commons.math3.analysis.differentiation.DerivativeStructure;
 import org.apache.commons.math3.analysis.differentiation.FiniteDifferencesDifferentiator;
 import org.apache.commons.math3.analysis.differentiation.UnivariateDifferentiableFunction;
 
@@ -8,23 +9,80 @@ import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class Evaluador {
+	public static final long MAX_ITERACIONES = 100;
+
 	public static double evaluar(String ecuacion, double valorX) {
 		Expression e = new ExpressionBuilder(ecuacion).variables("x").build();
 		e.setVariable("x", valorX);
 		return e.evaluate();
 	}
-	public static double derivar(String ecuacion, double valorX){
-		UnivariateFunction funcion = new UnivariateFunction() {
-			
-			@Override
+
+	public static double derivar(String ecuacion, double valorX) {
+		UnivariateFunction basicF = new UnivariateFunction() {
 			public double value(double x) {
-				
-				return Evaluador.evaluar(ecuacion, valorX);
+				double result = Evaluador.evaluar(ecuacion, x);
+				System.out.println(ecuacion + " para x = " + x + " es " + result);
+				return result;
 			}
 		};
-		FiniteDifferencesDifferentiator differentiator = new FiniteDifferencesDifferentiator(5, 0.01);
-		UnivariateDifferentiableFunction completeF = differentiator.differentiate(funcion);
-		return completeF.value(valorX);
 
+		FiniteDifferencesDifferentiator differentiator = new FiniteDifferencesDifferentiator(5, 0.01);
+		UnivariateDifferentiableFunction completeF = differentiator.differentiate(basicF);
+
+		DerivativeStructure xDS = new DerivativeStructure(1, 1, 0, 2);
+		DerivativeStructure yDS = completeF.value(xDS);
+		
+		double derivada = yDS.getPartialDerivative(1);
+		System.out.println("f'(" + valorX + ") = " + derivada);
+
+		return derivada;
+	}
+
+	public static double calcNewtonRaphson(String fx, double p0, double epsilon) {
+		// evaluar p0 en derivada
+		// evaluar p0 en funcion
+
+		// iterar hasta que cant de decimales de pN < e
+		// pN = p0 - (f(p0) / f'(p0))
+		
+		double pN = p0;
+		double pNant = 0;
+		double raiz = 0;
+		int cantDecimales = 0;
+		int i = 1;
+		
+		do {
+			double fpN = Evaluador.evaluar(fx, pN);
+			double dpN = Evaluador.derivar(fx, pN);
+			
+			System.out.println("i = " + i);
+			System.out.println("pN = " + pN);
+			System.out.println("f(pN) = " + fpN);
+			System.out.println("f'(pN) = " + dpN);
+			
+			pNant = pN;
+			pN = pN - (fpN / dpN);
+			
+			cantDecimales = compararDecimales(pN, pNant);
+			
+		} while (cantDecimales >= epsilon || (i++ > MAX_ITERACIONES));
+		
+		return raiz;
+	}
+	
+	public static int compararDecimales(double num1, double num2) {
+		String strNum1 = String.valueOf(num1);
+		String strNum2 = String.valueOf(num2);
+		
+		if (!strNum1.contains(".") || !strNum2.contains(".")) {
+			return 0;
+		} else {
+			String decsNum1 = strNum1.substring(strNum1.lastIndexOf(".") + 1);
+			String decsNum2 = strNum2.substring(strNum2.lastIndexOf(".") + 1);
+			int i = 0;
+			while (decsNum1.charAt(i) == decsNum2.charAt(i)) i++;
+			
+			return i;
+		}
 	}
 }
