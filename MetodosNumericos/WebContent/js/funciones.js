@@ -8,12 +8,12 @@ $(document).ready(function() {
 
 });
 
-function evaluarMetodo(nombreMetodo, idFormulario, idGrafico) {
+function evaluarMetodo(nombreMetodo, idFormulario, idGrafico, shouldFill) {
 	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
 		if (data.puntos) {
 			$("#" + idGrafico).show();
 			$.jqplot(idGrafico, [data.puntos], {
-				series: [{fill: true}, {}]
+				series: [{fill: shouldFill}, {}]
 			});
 		}
 	}, "json");

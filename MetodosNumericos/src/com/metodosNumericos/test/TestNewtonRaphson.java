@@ -2,44 +2,32 @@ package com.metodosNumericos.test;
 
 import static org.junit.Assert.*;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.metodosNumericos.beans.Point;
 import com.metodosNumericos.util.Evaluador;
-
-import net.objecthunter.exp4j.Expression;
-import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class TestNewtonRaphson {
 	public static final String VAR_X = "x";
-	private BigDecimal p0;
-	private BigDecimal e;
+	private double p0;
+	private double e;
 	private String fx;
 
 	@Before
 	public void setUp() {
-		p0 = new BigDecimal(2);
-		e = new BigDecimal(5);
+		p0 = 2;
+		e = 5;
 		fx = "x^3 - 2x";
 	}
 	
 	@Test
 	public void test() {
-		//--evaluar p0 en derivada
-		//evaluar p0 en funcion
-				
-		//iterar hasta que cant de decimales de pN < e
-		//pN = p0 - (f(p0) / f'(p0))
-		
-		BigDecimal fp0 = new BigDecimal(Evaluador.evaluar(fx, p0.doubleValue()));
-		
-		assertEquals("f(p0) debe ser igual a 4", new BigDecimal("4"), fp0);
-		
-		BigDecimal d_fp0 = new BigDecimal(Evaluador.derivar(fx, p0.doubleValue()));
-		
-		assertEquals("f'(p0) debe ser igual a 10", new BigDecimal("10"), d_fp0);
+		List<Point> puntos = Evaluador.calcNewtonRaphson(fx, p0, e);
+		assertTrue("Debe devolver al menos un punto", puntos.size() > 0);
+		assertEquals("El resultado de la función debe ser 1.41421", 1.41421, puntos.get(puntos.size() - 1).getX(), 0.01);
 	}
 
 }
