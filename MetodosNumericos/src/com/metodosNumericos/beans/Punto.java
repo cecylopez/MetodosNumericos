@@ -1,15 +1,15 @@
 package com.metodosNumericos.beans;
 
-public class Point {
+public class Punto {
 	private double x;
 	private double y;
 	
-	public Point() {
+	public Punto() {
 		x = 0;
 		y = 0;
 	}
 
-	public Point(double x, double y) {
+	public Punto(double x, double y) {
 		super();
 		this.x = x;
 		this.y = y;

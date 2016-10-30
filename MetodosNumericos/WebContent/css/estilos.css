@@ -8,3 +8,19 @@
 .tab-pane .form-horizontal {
 	margin-top: 30px;
 }
+
+.seriesTable {
+	display: none;
+}
+
+.table-wrapper {
+	float: right;
+	width: 500px;
+	font-size: 9pt;
+	height: 400px;
+	overflow-y: auto;
+}
+
+.seriesTable tbody tr td {
+	padding: 4px;
+}

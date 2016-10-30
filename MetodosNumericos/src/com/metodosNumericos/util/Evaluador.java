@@ -8,7 +8,7 @@ import org.apache.commons.math3.analysis.differentiation.DerivativeStructure;
 import org.apache.commons.math3.analysis.differentiation.FiniteDifferencesDifferentiator;
 import org.apache.commons.math3.analysis.differentiation.UnivariateDifferentiableFunction;
 
-import com.metodosNumericos.beans.Point;
+import com.metodosNumericos.beans.Punto;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -43,8 +43,8 @@ public class Evaluador {
 		return derivada;
 	}
 
-	public static List<Point> calcNewtonRaphson(String fx, double p0, double epsilon) {
-		List<Point> puntos = new ArrayList<>();
+	public static List<Punto> calcNewtonRaphson(String fx, double p0, double epsilon) {
+		List<Punto> puntos = new ArrayList<>();
 		
 		double pN = p0;
 		double pNant = 0;
@@ -60,7 +60,7 @@ public class Evaluador {
 			System.out.println("f(pN) = " + fpN);
 			System.out.println("f'(pN) = " + dpN);
 			
-			puntos.add(new Point(pN, fpN));
+			puntos.add(new Punto(pN, fpN));
 			
 			pNant = pN;
 			pN = pN - (fpN / dpN);
@@ -68,8 +68,34 @@ public class Evaluador {
 			cantDecimales = compararDecimales(pN, pNant);
 			System.out.println("decimales: " + cantDecimales);
 			
-		} while ((i++ > MAX_ITERACIONES) || cantDecimales <= epsilon);
+		} while ((i++ < MAX_ITERACIONES) && cantDecimales <= epsilon);
 		
+		return puntos;
+	}
+	
+	public static List<Punto> calcularSimpson(String fx, double x0, double x2) {
+		List<Punto> puntos = new ArrayList<>();
+		
+		double h = (x2 - x0) / 2;
+		double x1 = x0 + h;
+		
+		double fx0 = Evaluador.evaluar(fx, x0);
+		double fx1 = Evaluador.evaluar(fx, x1);
+		double fx2 = Evaluador.evaluar(fx, x2);
+		
+		System.out.println("x0 = " + x0 + ", f(x0) = " + fx0);
+		System.out.println("x1 = " + x1 + ", f(x1) = " + fx1);
+		System.out.println("x2 = " + x2 + ", f(x2) = " + fx2);
+		
+		double aprox = (1.0 / 3.0) * (fx0 + (4.0 * fx1) + fx2);
+		
+		System.out.println("aprox = " + aprox);
+		
+		puntos.add(new Punto(x0, fx0));
+		puntos.add(new Punto(x1, fx1));
+		puntos.add(new Punto(x2, fx2));
+		puntos.add(new Punto(0, aprox));
+				
 		return puntos;
 	}
 	
@@ -85,7 +111,7 @@ public class Evaluador {
 			String decsNum1 = strNum1.substring(strNum1.lastIndexOf(".") + 1);
 			String decsNum2 = strNum2.substring(strNum2.lastIndexOf(".") + 1);
 			int i = 0;
-			while (decsNum1.charAt(i) == decsNum2.charAt(i)) i++;
+			while (i < decsNum1.length() && decsNum1.charAt(i) == decsNum2.charAt(i)) i++;
 			
 			return i;
 		}

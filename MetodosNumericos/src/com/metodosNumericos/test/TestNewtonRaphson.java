@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.metodosNumericos.beans.Point;
+import com.metodosNumericos.beans.Punto;
 import com.metodosNumericos.util.Evaluador;
 
 public class TestNewtonRaphson {
@@ -25,7 +25,7 @@ public class TestNewtonRaphson {
 	
 	@Test
 	public void test() {
-		List<Point> puntos = Evaluador.calcNewtonRaphson(fx, p0, e);
+		List<Punto> puntos = Evaluador.calcNewtonRaphson(fx, p0, e);
 		assertTrue("Debe devolver al menos un punto", puntos.size() > 0);
 		assertEquals("El resultado de la función debe ser 1.41421", 1.41421, puntos.get(puntos.size() - 1).getX(), 0.01);
 	}

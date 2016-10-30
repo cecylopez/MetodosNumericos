@@ -46,10 +46,16 @@
 								</div>
 								<div class="form/group">
 									<div class="col-sm-offset-2 col-sm-8">
-										<button type="button" class="btn btn-default" onClick="evaluarMetodo('Metodo1', 'formularioM1', 'chartMetodo1', false)">Generar</button>
+										<button type="button" class="btn btn-default" onClick="evaluarMetodo1('Metodo1', 'formularioM1', 'chartMetodo1', 'tablaMetodo1')">Generar</button>
 									</div>
 								</div>
 							</form>
+							<div class="table-wrapper">
+								<table id="tablaMetodo1" class="seriesTable table table-bordered table-hover">
+									<thead><tr><th>Iteración (N)</th><th>pN</th><th>f(pN)</th></tr></thead>
+									<tbody></tbody>
+								</table>
+							</div>
 							<br>
 							<div id="chartMetodo1" class="chartDiv"></div>
 						</div>
@@ -70,10 +76,15 @@
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-8">
-										<button type="button" class="btn btn-default" onClick="evaluarMetodo('Metodo2', 'formularioM2', 'chartMetodo2', true)">Generar</button>
+										<button type="button" class="btn btn-default" onClick="evaluarMetodo2('Metodo2', 'formularioM2', 'chartMetodo2', 'tablaMetodo2')">Generar</button>
 									</div>
 								</div>
 							</form>
+							<div class="table-wrapper">
+								<table id="tablaMetodo2" class="seriesTable table table-bordered table-hover">
+									<tbody></tbody>
+								</table>
+							</div>
 							<br>
 							<div id="chartMetodo2" class="chartDiv"></div>
 						</div>

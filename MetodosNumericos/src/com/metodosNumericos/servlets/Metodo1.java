@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import com.metodosNumericos.beans.Point;
+import com.metodosNumericos.beans.Punto;
 import com.metodosNumericos.util.Evaluador;
 
 @WebServlet("/Metodo1")
@@ -28,9 +28,9 @@ public class Metodo1 extends HttpServlet {
 		JsonObject obj = new JsonObject();
 		JsonArray arr = new JsonArray();
 		
-		List<Point> puntos = Evaluador.calcNewtonRaphson(fx, p0.doubleValue(), e.doubleValue());
+		List<Punto> puntos = Evaluador.calcNewtonRaphson(fx, p0.doubleValue(), e.doubleValue());
 		
-		for(Point p: puntos) {
+		for(Punto p: puntos) {
 			JsonArray arp = new JsonArray();
 			arp.add(new JsonPrimitive(p.getX()));
 			arp.add(new JsonPrimitive(p.getY()));
