@@ -86,3 +86,26 @@ function evaluarMetodo2(nombreMetodo, idFormulario, idGrafico, idTabla) {
 		}
 	}, "json");
 }
+
+function evaluarMetodo3(nombreMetodo, idFormulario, idGrafico, idTabla) {
+	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
+		if (data.puntos) {
+			$("#" + idGrafico).show();
+			
+			if(plot3) plot3.destroy();
+			
+			plot3 = $.jqplot(idGrafico, [data.puntos], {
+				series: [{fill: false}, {}]
+			});
+			
+			$("#" + idTabla + " tbody").empty();
+			
+			var tr = $("<tr>");
+			tr.append($("<td>").append(data.derivada));
+				
+			$("#" + idTabla + " tbody").append(tr);
+			
+			$("#" + idTabla).show();
+		}
+	}, "json");
+}

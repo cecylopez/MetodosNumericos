@@ -34,15 +34,15 @@
 							<form class="form-horizontal" id="formularioM1" method="post">
 								<div class="form-group">
 									<label for="campoP0" class="col-sm-2 control-label">Ingrese el P0</label> 
-									<div class="col-sm-8"><input type="text" class="form-control" id="campoP0" name="campoP0" placeholder="P0"></div>
+									<div class="col-sm-8"><input type="text" class="form-control" id="campoP0" name="campoP0" placeholder="P0" required></div>
 								</div>
 								<div class="form-group">
 									<label for="campoE" class="col-sm-2 control-label">Ingrese un valor</label> 
-									<div class="col-sm-8"><input type="text" class="form-control" id="campoE" name="campoE" placeholder="E"></div>
+									<div class="col-sm-8"><input type="text" class="form-control" id="campoE" name="campoE" placeholder="E" required></div>
 								</div>
 								<div class="form-group">
 									<label for="campoFuncion" class="col-sm-2 control-label">Ingrese una función</label> 
-									<div class="col-sm-8"><input type="text" class="form-control" id="funcion" name="funcion" placeholder="f(x)"></div>
+									<div class="col-sm-8"><input type="text" class="form-control" id="funcion" name="funcion" placeholder="f(x)" required></div>
 								</div>
 								<div class="form/group">
 									<div class="col-sm-offset-2 col-sm-8">
@@ -64,15 +64,15 @@
 							<form class="form-horizontal" id="formularioM2" method="post">
 								<div class="form-group">
 									<label for="limiteInferior" class="col-sm-2 control-label">Ingrese el límite Inferior</label>
-									<div class="col-sm-8"><input type="text" class="form-control" id="limiteInferior" name="limiteInferior" placeholder="Limite Inferior"></div>
+									<div class="col-sm-8"><input type="text" class="form-control" id="limiteInferior" name="limiteInferior" placeholder="Limite Inferior" required></div>
 								</div>
 								<div class="form-group">
 									<label for="limiteSuperior" class="col-sm-2 control-label">Ingrese el límite superior</label>
-									<div class="col-sm-8"><input type="text" class="form-control" id="limiteSuperior" name="limiteSuperior" placeholder="Limite Superior"></div>
+									<div class="col-sm-8"><input type="text" class="form-control" id="limiteSuperior" name="limiteSuperior" placeholder="Limite Superior" required></div>
 								</div>
 								<div class="form-group">
 									<label for="funcionX" class="col-sm-2 control-label">Ingrese una función</label> 
-									<div class="col-sm-8"><input type="text" class="form-control" id="funcion" name="funcion" placeholder="f(x)"></div>
+									<div class="col-sm-8"><input type="text" class="form-control" id="funcion" name="funcion" placeholder="f(x)" required></div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-8">
@@ -93,18 +93,24 @@
 							<form class="form-horizontal" id="formularioM3" method="post">
 								<div class="form-group" id="formulario3">
 									<label for="campoX0" class="col-sm-2 control-label">Ingrese un valor X0</label> 
-									<div class="col-sm-8"><input type="text" class="form-control" id="campoX0" name=:campoX0 placeholder="X0"></div>
+									<div class="col-sm-8"><input type="text" class="form-control" id="campoX0" name="campoX0" placeholder="X0" required></div>
 								</div>
 								<div class="form-group">
 									<label for="fX" class="col-sm-2 control-label">Ingrese una función</label> 
-									<div class="col-sm-8"><input type="text" class="form-control" id="fX" name="fX" placeholder="f(x)"></div>
+									<div class="col-sm-8"><input type="text" class="form-control" id="fX" name="fX" placeholder="f(x)" required></div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-8">
-										<button type="button" class="btn btn-default" onClick="evaluarMetodo('Metodo3', 'formularioM3', 'chartMetodo3', true)">Generar</button>
+										<button type="button" class="btn btn-default" onClick="evaluarMetodo3('Metodo3', 'formularioM3', 'chartMetodo3', 'tablaMetodo3')">Generar</button>
 									</div>
 								</div>
 							</form>
+							<div class="table-wrapper">
+								<table id="tablaMetodo3" class="seriesTable table table-bordered table-hover">
+									<thead><tr><th>Derivada en x0</th></tr></thead>
+									<tbody></tbody>
+								</table>
+							</div>
 							<br>
 							<div id="chartMetodo3" class="chartDiv"></div>
 						</div>
@@ -113,11 +119,11 @@
 							<form class="form-horizontal" id="formularioM4" method="post">
 								<div class="form-group" id="formulario4">
 									<label for="cparticiones" class="col-sm-2 control-label">Ingrese cantidad de particiones</label> 
-									<div class="col-sm-8"><input type="text" class="form-control" id="cparticiones" name="cparticiones" placeholder="cantidad pariciones"></div>
+									<div class="col-sm-8"><input type="text" class="form-control" id="cparticiones" name="cparticiones" placeholder="cantidad pariciones" required></div>
 								</div>
 								<div class="form-group">
 									<label for="IntegralM" class="col-sm-2 control-label">Ingrese una función integral doble o triple</label> 
-									<div class="col-sm-8"><input type="text" class="form-control" id="IntegranM" name="IntegranM" placeholder="Integral doble o triple"></div>
+									<div class="col-sm-8"><input type="text" class="form-control" id="IntegranM" name="IntegranM" placeholder="Integral doble o triple" required></div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-8">
