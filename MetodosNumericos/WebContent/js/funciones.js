@@ -11,6 +11,10 @@ $(document).ready(function() {
 });
 
 function evaluarMetodo1(nombreMetodo, idFormulario, idGrafico, idTabla) {
+	if(!$("#" + idFormulario).valid()) {
+		return;
+	}
+	
 	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
 		if (data.puntos) {
 			$("#" + idGrafico).show();
@@ -38,6 +42,9 @@ function evaluarMetodo1(nombreMetodo, idFormulario, idGrafico, idTabla) {
 }
 
 function evaluarMetodo2(nombreMetodo, idFormulario, idGrafico, idTabla) {
+	if(!$("#" + idFormulario).valid()) {
+		return;
+	}
 	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
 		if (data.puntos) {
 			$("#" + idGrafico).show();
@@ -88,6 +95,9 @@ function evaluarMetodo2(nombreMetodo, idFormulario, idGrafico, idTabla) {
 }
 
 function evaluarMetodo3(nombreMetodo, idFormulario, idGrafico, idTabla) {
+	if(!$("#" + idFormulario).valid()) {
+		return;
+	}
 	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
 		if (data.puntos) {
 			$("#" + idGrafico).show();
@@ -111,6 +121,9 @@ function evaluarMetodo3(nombreMetodo, idFormulario, idGrafico, idTabla) {
 }
 
 function evaluarMetodo4(nombreMetodo, idFormulario, idGrafico, idTabla) {
+	if(!$("#" + idFormulario).valid()) {
+		return;
+	}
 	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
 		if (data.puntos) {
 			$("#" + idGrafico).show();

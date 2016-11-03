@@ -1,3 +1,7 @@
+input:invalid {
+  border: 1px solid red;
+}
+
 .chartDiv {
 	height:400px;
 	width:300px;

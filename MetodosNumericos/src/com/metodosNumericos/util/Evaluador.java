@@ -54,7 +54,7 @@ public class Evaluador {
 		
 		do {
 			double fpN = Evaluador.evaluar(fx, pN);
-			double dpN = Evaluador.derivar(fx, pN);
+			double dpN = Evaluador.calcularDiferenciasCentrales(fx, pN).get(2).getY();
 			
 			System.out.println("i = " + i);
 			System.out.println("pN = " + pN);
@@ -128,6 +128,7 @@ public class Evaluador {
 		double fx2 = Evaluador.evaluar(ecuacion, x2);
 		
 		double derivada = ((fx2 - fx1) / (2d * DIFERENCIA_H));
+		System.out.println("derivada: " + derivada);
 		
 		puntos.add(new Punto(x1, fx1));
 		puntos.add(new Punto(x2, fx2));

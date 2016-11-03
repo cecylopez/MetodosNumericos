@@ -18,7 +18,10 @@ public class TestDerivada {
 		assertEquals("El resultado de la derivada de f(x) debe ser 0.5", 0.5, Evaluador.derivar("sin(x)", 30), 0.01);
 	}
 	
-	public void testPolinomicaAprox() {
+	@Test
+	public void testDiferenciasCentrales() {
+		assertEquals("El resultado de la derivada de f(x) debe ser 12", 12.25, Evaluador.calcularDiferenciasCentrales("x^3", 2).get(2).getY(), 0.01);
 		
+		assertEquals("El resultado de la derivada de f(x) debe ser 1", 0.95, Evaluador.calcularDiferenciasCentrales("sin(x)", 0).get(2).getY(), 0.01);
 	}
 }
