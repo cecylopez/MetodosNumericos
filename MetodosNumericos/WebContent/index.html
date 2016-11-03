@@ -123,14 +123,20 @@
 								</div>
 								<div class="form-group">
 									<label for="IntegralM" class="col-sm-2 control-label">Ingrese una función integral doble o triple</label> 
-									<div class="col-sm-8"><input type="text" class="form-control" id="IntegranM" name="IntegranM" placeholder="Integral doble o triple" required></div>
+									<div class="col-sm-8"><input type="text" class="form-control" id="IntegralM" name="IntegralM" placeholder="Integral doble o triple" required></div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-8">
-										<button type="button" class="btn btn-default" onClick="evaluarMetodo('Metodo4', 'formularioM4', 'chartMetodo4', true)">Generar</button>
+										<button type="button" class="btn btn-default" onClick="evaluarMetodo('Metodo4', 'formularioM4', 'chartMetodo4', 'tablaMetodo4')">Generar</button>
 									</div>
 								</div>
 							</form>
+							<div class="table-wrapper">
+								<table id="tablaMetodo4" class="seriesTable table table-bordered table-hover">
+									<thead><tr><th>Derivada en x0</th></tr></thead>
+									<tbody></tbody>
+								</table>
+							</div>
 							<br>
 							<div id="chartMetodo4" class="chartDiv"></div>
 						</div>

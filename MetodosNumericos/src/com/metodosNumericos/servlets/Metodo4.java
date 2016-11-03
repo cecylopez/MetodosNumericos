@@ -10,19 +10,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class Metodo4
- */
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 @WebServlet("/Metodo4")
 public class Metodo4 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-System.out.println("Invocado servlet Metodo4. Datos recibidos: ");
+		int cparticiones  = Integer.parseInt(request.getParameter("cparticiones"));
+		String IntegralM = request.getParameter("IntegralM");
 		
-		for (Entry<String, String[]> entry: request.getParameterMap().entrySet()) {
-			System.out.println("\t ==== " + entry.getKey() + Arrays.toString(entry.getValue()));
-		}
+		JsonObject obj = new JsonObject();
+		JsonArray arr = new JsonArray();
+		
+		//TODO: Implementar
+		
+		
+		obj.add("puntos", arr);
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+    	response.setHeader("Content-Type", "application/json; charset=UTF-8");
+    	
+    	response.getWriter().write(obj.toString());
+		response.getWriter().flush();
 	}
 
 }

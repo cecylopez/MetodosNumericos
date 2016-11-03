@@ -15,6 +15,7 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class Evaluador {
 	public static final long MAX_ITERACIONES = 100;
+	public static final double DIFERENCIA_H = 0.5;
 
 	public static double evaluar(String ecuacion, double valorX) {
 		Expression e = new ExpressionBuilder(ecuacion).variables("x").build();
@@ -115,5 +116,23 @@ public class Evaluador {
 			
 			return i;
 		}
+	}
+	
+	public static List<Punto> calcularDiferenciasCentrales(String ecuacion, double valorX) {
+		List<Punto> puntos = new ArrayList<>();
+		
+		double x1 = valorX - DIFERENCIA_H;
+		double x2 = valorX + DIFERENCIA_H;
+		
+		double fx1 = Evaluador.evaluar(ecuacion, x1);
+		double fx2 = Evaluador.evaluar(ecuacion, x2);
+		
+		double derivada = ((fx2 - fx1) / (2d * DIFERENCIA_H));
+		
+		puntos.add(new Punto(x1, fx1));
+		puntos.add(new Punto(x2, fx2));
+		puntos.add(new Punto(valorX, derivada));
+		
+		return puntos;
 	}
 }
