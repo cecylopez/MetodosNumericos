@@ -15,7 +15,7 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class Evaluador {
 	public static final long MAX_ITERACIONES = 100;
-	public static final double DIFERENCIA_H = 0.5;
+	public static final double DIFERENCIA_H = 0.1;
 
 	public static double evaluar(String expresion) {
 		Expression e = new ExpressionBuilder(expresion).build();
