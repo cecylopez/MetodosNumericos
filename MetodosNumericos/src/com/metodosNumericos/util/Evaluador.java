@@ -17,6 +17,11 @@ public class Evaluador {
 	public static final long MAX_ITERACIONES = 100;
 	public static final double DIFERENCIA_H = 0.5;
 
+	public static double evaluar(String expresion) {
+		Expression e = new ExpressionBuilder(expresion).build();
+		return e.evaluate();
+	}
+	
 	public static double evaluar(String ecuacion, double valorX) {
 		Expression e = new ExpressionBuilder(ecuacion).variables("x").build();
 		e.setVariable("x", valorX);

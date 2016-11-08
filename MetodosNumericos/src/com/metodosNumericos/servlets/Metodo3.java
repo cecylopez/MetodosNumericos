@@ -21,7 +21,7 @@ public class Metodo3 extends HttpServlet {
 	
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		double x0 = Double.parseDouble(request.getParameter("campoX0"));
+		double x0 = Evaluador.evaluar(request.getParameter("campoX0"));
 		String fx = request.getParameter("fX");
 		
 		JsonObject obj = new JsonObject();

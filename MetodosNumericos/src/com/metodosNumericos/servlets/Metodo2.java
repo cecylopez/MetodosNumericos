@@ -20,8 +20,8 @@ public class Metodo2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		double x0 = new Double(request.getParameter("limiteInferior")).doubleValue();
-		double x2 = new Double(request.getParameter("limiteSuperior")).doubleValue();
+		double x0 = Evaluador.evaluar(request.getParameter("limiteInferior"));
+		double x2 = Evaluador.evaluar(request.getParameter("limiteSuperior"));
 		String fx = request.getParameter("funcion");
 		
 		JsonObject obj = new JsonObject();
