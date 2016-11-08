@@ -125,19 +125,12 @@ function evaluarMetodo4(nombreMetodo, idFormulario, idGrafico, idTabla) {
 		return;
 	}
 	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
-		if (data.puntos) {
-			$("#" + idGrafico).show();
-			
-			if(plot3) plot3.destroy();
-			
-			plot3 = $.jqplot(idGrafico, [data.puntos], {
-				series: [{fill: false}, {}]
-			});
+		if (data.resultado) {
 			
 			$("#" + idTabla + " tbody").empty();
 			
 			var tr = $("<tr>");
-			tr.append($("<td>").append(data.derivada));
+			tr.append($("<td>").append(data.resultado));
 				
 			$("#" + idTabla + " tbody").append(tr);
 			

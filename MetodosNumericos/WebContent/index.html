@@ -118,23 +118,37 @@
 
 						<div role="tabpanel" class="tab-pane" id="Metodo4">
 							<form class="form-horizontal" id="formularioM4" method="post">
-								<div class="form-group" id="formulario4">
-									<label for="cparticiones" class="col-sm-2 control-label">Ingrese cantidad de particiones</label> 
-									<div class="col-sm-8"><input type="number" class="form-control" id="cparticiones" name="cparticiones" placeholder="cantidad pariciones" required></div>
+								<div class="form-group">
+									<label for="cparticionesN" class="col-sm-2 control-label">Ingrese las cantidades de particiones</label> 
+									<div class="col-sm-2"><input type="number" class="form-control" id="particionesN" name="cparticionesn" placeholder="1ra Integral" required></div>
+									<div class="col-sm-2"><input type="number" class="form-control" id="particionesM" name="cparticionesm" placeholder="2da Integral" required></div>
+									<div class="col-sm-2"><input type="number" class="form-control" id="particionesO" name="cparticioneso" placeholder="3ra Integral" required></div>
 								</div>
 								<div class="form-group">
 									<label for="IntegralM" class="col-sm-2 control-label">Ingrese una función integral doble o triple</label> 
 									<div class="col-sm-8"><input type="text" class="form-control" id="IntegralM" name="IntegralM" placeholder="Integral doble o triple" required></div>
 								</div>
 								<div class="form-group">
+									<label for="limitesSup" class="col-sm-2 control-label">Ingrese límites superioes</label> 
+									<div class="col-sm-2"><input type="text" class="form-control" id="limiteS1" name="limiteS1" placeholder="1ra Integral" required></div>
+									<div class="col-sm-2"><input type="text" class="form-control" id="limiteS2" name="limiteS2" placeholder="2da Integral" required></div>
+									<div class="col-sm-2"><input type="text" class="form-control" id="limiteS3" name="limiteS3" placeholder="3ra Integral" required></div>
+								</div>
+								<div class="form-group">
+									<label for="limitesSup" class="col-sm-2 control-label">Ingrese límites inferiores</label> 
+									<div class="col-sm-2"><input type="text" class="form-control" id="limiteI1" name="limiteI1" placeholder="1ra Integral" required></div>
+									<div class="col-sm-2"><input type="text" class="form-control" id="limiteI2" name="limiteI2" placeholder="2da Integral" required></div>
+									<div class="col-sm-2"><input type="text" class="form-control" id="limiteI3" name="limiteI3" placeholder="3ra Integral" required></div>
+								</div>
+								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-8">
-										<button type="button" class="btn btn-default" onClick="evaluarMetodo('Metodo4', 'formularioM4', 'chartMetodo4', 'tablaMetodo4')">Generar</button>
+										<button type="button" class="btn btn-default" onClick="evaluarMetodo4('Metodo4', 'formularioM4', 'chartMetodo4', 'tablaMetodo4')">Generar</button>
 									</div>
 								</div>
 							</form>
 							<div class="table-wrapper">
 								<table id="tablaMetodo4" class="seriesTable table table-bordered table-hover">
-									<thead><tr><th>Derivada en x0</th></tr></thead>
+									<thead><tr><th>Resultado</th></tr></thead>
 									<tbody></tbody>
 								</table>
 							</div>

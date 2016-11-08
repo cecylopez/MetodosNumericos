@@ -27,6 +27,13 @@ public class Evaluador {
 		e.setVariable("x", valorX);
 		return e.evaluate();
 	}
+	
+	public static double evaluar(String ecuacion, double valorX, double valorY) {
+		Expression e = new ExpressionBuilder(ecuacion).variables("x", "y").build();
+		e.setVariable("x", valorX);
+		e.setVariable("y", valorY);
+		return e.evaluate();
+	}
 
 	public static double derivar(String ecuacion, double valorX) {
 		UnivariateFunction basicF = new UnivariateFunction() {
