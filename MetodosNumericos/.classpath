@@ -31,5 +31,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/robertux/lib/jPDFWriter.v2016R1.01.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
