@@ -11,7 +11,7 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.jqplot.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="js/funciones.js"></script>
+<script type="text/javascript" src="js/funciones.js" charset="utf-8"></script>
 </head>
 <body>
 	<div class="container">
@@ -19,6 +19,12 @@
 			<div class="page-header">
 				<h1>Métodos Numéricos</h1>
 			</div>
+			<form id="frmPDFGen" method="POST" action="/MetodosNumericos/GeneradorPDF" target="blank">
+				<input type="hidden" id="params" name="params" />
+				<input type="hidden" id="puntos" name="puntos" />
+				<input type="hidden" id="img" name="img" />
+				<input type="hidden" id="metodo" name="metodo" />
+			</form>
 
 			<div class="panel panel-primary">
 				<div class="panel-heading">Evaluación de Métodos Numéricos</div>
@@ -47,7 +53,8 @@
 								</div>
 								<div class="form/group">
 									<div class="col-sm-offset-2 col-sm-8">
-										<button type="button" class="btn btn-default" onClick="evaluarMetodo1('Metodo1', 'formularioM1', 'chartMetodo1', 'tablaMetodo1')">Generar</button>
+										<button type="button" class="btn btn-primary" onClick="evaluarMetodo1('Metodo1', 'formularioM1', 'chartMetodo1', 'tablaMetodo1')">Generar</button>
+										<button type="button" id="btnGenerarPDF1" class="btn btn-default hidden-default" onClick="generarPDF1()">Exportar PDF</button>
 									</div>
 								</div>
 							</form>
@@ -77,7 +84,8 @@
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-8">
-										<button type="button" class="btn btn-default" onClick="evaluarMetodo2('Metodo2', 'formularioM2', 'chartMetodo2', 'tablaMetodo2')">Generar</button>
+										<button type="button" class="btn btn-primary" onClick="evaluarMetodo2('Metodo2', 'formularioM2', 'chartMetodo2', 'tablaMetodo2')">Generar</button>
+										<button type="button" id="btnGenerarPDF2" class="btn btn-default hidden-default" onClick="generarPDF2()">Exportar PDF</button>
 									</div>
 								</div>
 							</form>
@@ -102,7 +110,8 @@
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-8">
-										<button type="button" class="btn btn-default" onClick="evaluarMetodo3('Metodo3', 'formularioM3', 'chartMetodo3', 'tablaMetodo3')">Generar</button>
+										<button type="button" class="btn btn-primary" onClick="evaluarMetodo3('Metodo3', 'formularioM3', 'chartMetodo3', 'tablaMetodo3')">Generar</button>
+										<button type="button" id="btnGenerarPDF3" class="btn btn-default hidden-default" onClick="generarPDF3()">Exportar PDF</button>
 									</div>
 								</div>
 							</form>
@@ -143,6 +152,7 @@
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-8">
 										<button type="button" class="btn btn-default" onClick="evaluarMetodo4('Metodo4', 'formularioM4', 'chartMetodo4', 'tablaMetodo4')">Generar</button>
+										<button type="button" id="btnGenerarPDF4" class="btn btn-default hidden-default" onClick="generarPDF4()">Exportar PDF</button>
 									</div>
 								</div>
 							</form>

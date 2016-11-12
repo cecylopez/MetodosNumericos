@@ -1,6 +1,7 @@
 var root = "/MetodosNumericos/";
 
 var plot1, plot2, plot3, plot4;
+var puntos1, puntos2, puntos3, punto4;
 
 $(document).ready(function() {
 	$('#menuTabs li a').click(function(e) {
@@ -18,6 +19,7 @@ function evaluarMetodo1(nombreMetodo, idFormulario, idGrafico, idTabla) {
 	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
 		if (data.puntos) {
 			$("#" + idGrafico).show();
+			puntos1 = data.puntos;
 			
 			if(plot1) plot1.destroy();
 			
@@ -37,6 +39,7 @@ function evaluarMetodo1(nombreMetodo, idFormulario, idGrafico, idTabla) {
 			}
 			
 			$("#" + idTabla).show();
+			$("#btnGenerarPDF1").show();
 		}
 	}, "json");
 }
@@ -48,6 +51,7 @@ function evaluarMetodo2(nombreMetodo, idFormulario, idGrafico, idTabla) {
 	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
 		if (data.puntos) {
 			$("#" + idGrafico).show();
+			puntos2 = data.puntos;
 			
 			if(plot2) plot2.destroy();
 			
@@ -90,6 +94,7 @@ function evaluarMetodo2(nombreMetodo, idFormulario, idGrafico, idTabla) {
 			
 			
 			$("#" + idTabla).show();
+			$("#btnGenerarPDF2").show();
 		}
 	}, "json");
 }
@@ -101,6 +106,7 @@ function evaluarMetodo3(nombreMetodo, idFormulario, idGrafico, idTabla) {
 	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
 		if (data.puntos) {
 			$("#" + idGrafico).show();
+			puntos3 = data.puntos;
 			
 			if(plot3) plot3.destroy();
 			
@@ -116,6 +122,7 @@ function evaluarMetodo3(nombreMetodo, idFormulario, idGrafico, idTabla) {
 			$("#" + idTabla + " tbody").append(tr);
 			
 			$("#" + idTabla).show();
+			$("#btnGenerarPDF3").show();
 		}
 	}, "json");
 }
@@ -124,10 +131,11 @@ function evaluarMetodo4(nombreMetodo, idFormulario, idGrafico, idTabla) {
 	if(!$("#" + idFormulario).valid()) {
 		return;
 	}
-	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
+	$.post(root + "GeneradorPDF", $("#" + idFormulario).serialize(), function(data) {
 		if (data.resultado) {
 			
 			$("#" + idTabla + " tbody").empty();
+			puntos4 = data.resultado;
 			
 			var tr = $("<tr>");
 			tr.append($("<td>").append(data.resultado));
@@ -135,6 +143,56 @@ function evaluarMetodo4(nombreMetodo, idFormulario, idGrafico, idTabla) {
 			$("#" + idTabla + " tbody").append(tr);
 			
 			$("#" + idTabla).show();
+			$("#btnGenerarPDF4").show();
 		}
 	}, "json");
+}
+
+function generarPDF1() {
+	var img = $("#chartMetodo1").jqplotToImageStr({});
+	var params = $("#formularioM1").serialize();
+	
+	$("#params").val(params);
+	$("#puntos").val(puntos1);
+	$("#img").val(img);
+	$("#metodo").val("1");
+	
+	$("#frmPDFGen").submit();
+	
+}
+
+function generarPDF2() {
+	var img = $("#chartMetodo2").jqplotToImageStr({});
+	var params = $("#formularioM2").serialize();
+	
+	$("#params").val(params);
+	$("#puntos").val(puntos2);
+	$("#img").val(img);
+	$("#metodo").val("2");
+	
+	$("#frmPDFGen").submit();
+}
+
+function generarPDF3() {
+	var img = $("#chartMetodo3").jqplotToImageStr({});
+	var params = $("#formularioM3").serialize();
+	
+	$("#params").val(params);
+	$("#puntos").val(puntos3);
+	$("#img").val(img);
+	$("#metodo").val("3");
+	
+	$("#frmPDFGen").submit();
+}
+
+function generarPDF4() {
+	var img = $("#chartMetodo4").jqplotToImageStr({});
+	var params = $("#formularioM4").serialize();
+	
+	$("#params").val(params);
+	$("#puntos").val(puntos4);
+	$("#img").val(img);
+	$("#metodo").val("4");
+	
+	$("#frmPDFGen").submit();
 }

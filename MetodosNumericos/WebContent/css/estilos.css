@@ -28,3 +28,7 @@ input:invalid {
 .seriesTable tbody tr td {
 	padding: 4px;
 }
+
+.hidden-default {
+	display: none;
+}
