@@ -117,6 +117,24 @@ public class GeneradorPDF extends HttpServlet {
 			curLineHeight += lineHeight;
 			
 			break;
+			
+		case 3:
+			g2d.drawString("Derivada en x0", 30, curLineHeight);
+			g2d.drawString(puntos[0], 150, curLineHeight);
+			
+			g2d.drawRect(25, curLineHeight - 10, 250, lineHeight);
+			curLineHeight += lineHeight;
+			
+			break;
+			
+		case 4:
+			g2d.drawString("Resultado", 30, curLineHeight);
+			g2d.drawString(puntos[0], 150, curLineHeight);
+			
+			g2d.drawRect(25, curLineHeight - 10, 250, lineHeight);
+			curLineHeight += lineHeight;
+			
+			break;
 		}
 		
 		curLineHeight += (lineHeight * 2);

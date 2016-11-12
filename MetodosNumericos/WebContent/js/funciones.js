@@ -1,7 +1,7 @@
 var root = "/MetodosNumericos/";
 
 var plot1, plot2, plot3, plot4;
-var puntos1, puntos2, puntos3, punto4;
+var puntos1, puntos2, puntos3, puntos4;
 
 $(document).ready(function() {
 	$('#menuTabs li a').click(function(e) {
@@ -106,7 +106,7 @@ function evaluarMetodo3(nombreMetodo, idFormulario, idGrafico, idTabla) {
 	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
 		if (data.puntos) {
 			$("#" + idGrafico).show();
-			puntos3 = data.puntos;
+			puntos3 = data.derivada;
 			
 			if(plot3) plot3.destroy();
 			
@@ -131,7 +131,7 @@ function evaluarMetodo4(nombreMetodo, idFormulario, idGrafico, idTabla) {
 	if(!$("#" + idFormulario).valid()) {
 		return;
 	}
-	$.post(root + "GeneradorPDF", $("#" + idFormulario).serialize(), function(data) {
+	$.post(root + nombreMetodo, $("#" + idFormulario).serialize(), function(data) {
 		if (data.resultado) {
 			
 			$("#" + idTabla + " tbody").empty();
