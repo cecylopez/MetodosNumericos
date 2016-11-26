@@ -9,6 +9,13 @@ import org.apache.commons.math3.analysis.differentiation.FiniteDifferencesDiffer
 import org.apache.commons.math3.analysis.differentiation.UnivariateDifferentiableFunction;
 
 import com.metodosNumericos.beans.Punto;
+import com.wolfram.alpha.WAEngine;
+import com.wolfram.alpha.WAException;
+import com.wolfram.alpha.WAImage;
+import com.wolfram.alpha.WAPod;
+import com.wolfram.alpha.WAQuery;
+import com.wolfram.alpha.WAQueryResult;
+import com.wolfram.alpha.WASubpod;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -16,6 +23,7 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 public class Evaluador {
 	public static final long MAX_ITERACIONES = 100;
 	public static final double DIFERENCIA_H = 0.1;
+	public static final String APIKEY = "3E4U6H-JHX2L5T4QE";
 
 	public static double evaluar(String expresion) {
 		Expression e = new ExpressionBuilder(expresion).build();
@@ -147,5 +155,48 @@ public class Evaluador {
 		puntos.add(new Punto(valorX, derivada));
 		
 		return puntos;
+	}
+	
+	public static String obtenerImagenPlot(String funcion) {
+		String imgSrc = "";
+		
+		WAEngine engine = new WAEngine();
+		engine.setAppID(APIKEY);
+		engine.addFormat("Image");
+		WAQuery query = engine.createQuery();
+		query.setInput("plot " + funcion);
+		
+		WAQueryResult result = null;
+		try {
+			result = engine.performQuery(query);
+		} catch (WAException e) {
+			System.out.println("WAException: " + e.getMessage());
+			e.printStackTrace();
+			return "";
+		}
+		
+		if(result == null || result.isError()) {
+			System.out.println("Error! " + (result != null? result.getErrorCode() + " - " + result.getErrorMessage(): "(null result)"));
+			return "";
+		} else if (!result.isSuccess()) {
+			System.out.println("Unknown result received");
+			return "";
+		}
+		
+		for (WAPod pod : result.getPods()) {
+			if ("3D plots".equals(pod.getTitle())) {
+				for (WASubpod subpod : pod.getSubpods()) {
+					if ("Real part".equals(subpod.getTitle())) {
+						for (Object element : subpod.getContents()) {
+                            if (element instanceof WAImage) {
+                            	imgSrc = ((WAImage)element).getURL();
+                            }
+                        }
+					}
+				}
+			}
+		}
+		
+		return imgSrc;
 	}
 }

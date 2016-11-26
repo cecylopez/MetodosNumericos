@@ -3,6 +3,20 @@ var root = "/MetodosNumericos/";
 var plot1, plot2, plot3, plot4;
 var puntos1, puntos2, puntos3, puntos4;
 
+function convertFileToDataURLviaFileReader(url, callback) {
+	var xhr = new XMLHttpRequest();
+	xhr.responseType = 'blob';
+	xhr.onload = function() {
+		var reader = new FileReader();
+		reader.onloadend = function() {
+			callback(reader.result);
+		}
+		reader.readAsDataURL(xhr.response);
+	};
+	xhr.open('GET', url);
+	xhr.send();
+}
+
 $(document).ready(function() {
 	$('#menuTabs li a').click(function(e) {
 		e.preventDefault()
@@ -144,6 +158,9 @@ function evaluarMetodo4(nombreMetodo, idFormulario, idGrafico, idTabla) {
 			
 			$("#" + idTabla).show();
 			$("#btnGenerarPDF4").show();
+			
+			$("#" + idGrafico).append($("<img>").attr("alt", "grafico").attr("src", data.urlGrafico));
+			$("#" + idGrafico).show();
 		}
 	}, "json");
 }
@@ -186,13 +203,14 @@ function generarPDF3() {
 }
 
 function generarPDF4() {
-	var img = $("#chartMetodo4").jqplotToImageStr({});
 	var params = $("#formularioM4").serialize();
 	
 	$("#params").val(params);
 	$("#puntos").val(puntos4);
-	$("#img").val(img);
 	$("#metodo").val("4");
 	
-	$("#frmPDFGen").submit();
+	convertFileToDataURLviaFileReader($("#chartMetodo4 img").attr("src"), function(base64img) {
+		$("#img").val(base64img);
+		$("#frmPDFGen").submit();
+	});
 }
