@@ -159,6 +159,7 @@ function evaluarMetodo4(nombreMetodo, idFormulario, idGrafico, idTabla) {
 			$("#" + idTabla).show();
 			$("#btnGenerarPDF4").show();
 			
+			$("#" + idGrafico).empty();
 			$("#" + idGrafico).append($("<img>").attr("alt", "grafico").attr("src", data.urlGrafico));
 			$("#" + idGrafico).show();
 		}
