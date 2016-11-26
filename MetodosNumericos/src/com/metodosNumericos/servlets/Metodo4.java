@@ -107,10 +107,6 @@ public class Metodo4 extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
     	response.setHeader("Content-Type", "application/json; charset=UTF-8");
-    	response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
-        response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
-        response.addHeader("Access-Control-Max-Age", "1728000");
     	
     	response.getWriter().write(obj.toString());
 		response.getWriter().flush();

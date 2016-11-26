@@ -184,19 +184,22 @@ public class Evaluador {
 		}
 		
 		for (WAPod pod : result.getPods()) {
-			if ("3D plots".equals(pod.getTitle())) {
+			System.out.println("Checking pod " + pod.getTitle());
+			if (pod.getTitle().toUpperCase().contains("3D plot".toUpperCase())) {
 				for (WASubpod subpod : pod.getSubpods()) {
-					if ("Real part".equals(subpod.getTitle())) {
-						for (Object element : subpod.getContents()) {
-                            if (element instanceof WAImage) {
-                            	imgSrc = ((WAImage)element).getURL();
-                            }
+					System.out.println("Checking subpod " + subpod.getTitle());
+					for (Object element : subpod.getContents()) {
+						System.out.println("Checknig pod content " + element);
+                        if (element instanceof WAImage) {
+                        	imgSrc = ((WAImage)element).getURL();
+                        	System.out.println("Image URL: " + imgSrc);
+                        	return imgSrc;
                         }
-					}
+                    }
 				}
 			}
 		}
 		
-		return imgSrc;
+		return "";
 	}
 }

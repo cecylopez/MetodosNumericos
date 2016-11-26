@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.wolfram.alpha.WAEngine;
 import com.wolfram.alpha.WAException;
 import com.wolfram.alpha.WAImage;
+import com.wolfram.alpha.WAPlainText;
 import com.wolfram.alpha.WAPod;
 import com.wolfram.alpha.WAQuery;
 import com.wolfram.alpha.WAQueryResult;
@@ -41,15 +42,17 @@ public class WolframAPITest {
             // Got a result.
             System.out.println("Successful query. Pods follow:\n");
             for (WAPod pod : result.getPods()) {
+            	System.out.println("checking pod " + pod.getTitle());
                 if (!pod.isError()) {
-                	if (!"3D plots".equals(pod.getTitle())) {
+                	if (!pod.getTitle().toUpperCase().contains("3D plot".toUpperCase())) {
                 		continue;
                 	}
                     
                     for (WASubpod subpod : pod.getSubpods()) {
-                    	if (!"Real part".equals(subpod.getTitle())) {
-                    		continue;
-                    	}
+//                    	if (!"Real part".equals(subpod.getTitle())) {
+//                    		continue;
+//                    	}
+                    	System.out.println("Checking subpod " + subpod.getTitle());
                         for (Object element : subpod.getContents()) {
                             if (element instanceof WAImage) {
                             	WAImage image = ((WAImage)element);
@@ -75,6 +78,11 @@ public class WolframAPITest {
 									System.out.println("IOException: " + e.getMessage());
 									e.printStackTrace();
 								}
+                            } else if (element instanceof WAPlainText) {
+                            	String text = ((WAPlainText)element).getText();
+                            	System.out.println("text: " + text);
+                            } else {
+                            	System.out.println("content of type " + element.toString());
                             }
                         }
                     }
