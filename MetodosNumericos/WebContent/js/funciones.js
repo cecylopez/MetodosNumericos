@@ -2,6 +2,7 @@ var root = "/MetodosNumericos/";
 
 var plot1, plot2, plot3, plot4;
 var puntos1, puntos2, puntos3, puntos4;
+var dataMetodo4;
 
 function convertFileToDataURLviaFileReader(url, callback) {
 	var xhr = new XMLHttpRequest();
@@ -160,8 +161,9 @@ function evaluarMetodo4(nombreMetodo, idFormulario, idGrafico, idTabla) {
 			$("#btnGenerarPDF4").show();
 			
 			$("#" + idGrafico).empty();
-			$("#" + idGrafico).append($("<img>").attr("alt", "grafico").attr("src", data.urlGrafico));
+			$("#" + idGrafico).append($("<img>").attr("alt", "grafico").attr("src", data.dataGrafico));
 			$("#" + idGrafico).show();
+			dataMetodo4 = data.dataGrafico;
 		}
 	}, "json");
 }
@@ -208,10 +210,8 @@ function generarPDF4() {
 	
 	$("#params").val(params);
 	$("#puntos").val(puntos4);
+	$("#img").val(dataMetodo4);
 	$("#metodo").val("4");
 	
-	convertFileToDataURLviaFileReader($("#chartMetodo4 img").attr("src"), function(base64img) {
-		$("#img").val(base64img);
-		$("#frmPDFGen").submit();
-	});
+	$("#frmPDFGen").submit();
 }

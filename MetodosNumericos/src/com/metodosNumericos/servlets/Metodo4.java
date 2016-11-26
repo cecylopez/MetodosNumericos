@@ -101,8 +101,12 @@ public class Metodo4 extends HttpServlet {
 		
 		System.out.println("\n\nJ = " + J);
 		
+		String imagenUrl = Evaluador.obtenerImagenPlot(integralM);
+		String imagenData = Evaluador.obtenerDataImagen(imagenUrl);
+		
 		obj.add("resultado", new JsonPrimitive(J));
-		obj.add("urlGrafico", new JsonPrimitive(Evaluador.obtenerImagenPlot(integralM)));
+		obj.add("urlGrafico", new JsonPrimitive(imagenUrl));
+		obj.add("dataGrafico", new JsonPrimitive("data:image/png;base64," + imagenData));
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");

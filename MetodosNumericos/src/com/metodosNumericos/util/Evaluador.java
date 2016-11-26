@@ -1,8 +1,12 @@
 package com.metodosNumericos.util;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.math3.analysis.UnivariateFunction;
 import org.apache.commons.math3.analysis.differentiation.DerivativeStructure;
 import org.apache.commons.math3.analysis.differentiation.FiniteDifferencesDifferentiator;
@@ -201,5 +205,21 @@ public class Evaluador {
 		}
 		
 		return "";
+	}
+	
+	public static String obtenerDataImagen(String imageUrl) throws MalformedURLException {
+		String imagenBase64 = "";
+		
+		try {
+			URL url = new URL(imageUrl);
+			
+			imagenBase64 = Base64.encodeBase64String(IOUtils.toByteArray(url.openConnection().getInputStream()));
+		} catch (Exception e) {
+			System.out.println("Excepción: " + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		System.out.println("Imagen base64: " + imagenBase64);
+		return imagenBase64;
 	}
 }
