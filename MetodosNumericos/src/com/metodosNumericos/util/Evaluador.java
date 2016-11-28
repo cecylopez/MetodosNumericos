@@ -112,7 +112,7 @@ public class Evaluador {
 		System.out.println("x1 = " + x1 + ", f(x1) = " + fx1);
 		System.out.println("x2 = " + x2 + ", f(x2) = " + fx2);
 		
-		double aprox = (1.0 / 3.0) * (fx0 + (4.0 * fx1) + fx2);
+		double aprox = (1.0 / 3.0) * h * (fx0 + (4.0 * fx1) + fx2);
 		
 		System.out.println("aprox = " + aprox);
 		
