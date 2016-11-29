@@ -18,12 +18,29 @@ function convertFileToDataURLviaFileReader(url, callback) {
 	xhr.send();
 }
 
+function showError() {
+	$("#error-message").show();
+}
+
+function closeError() {
+	$("#error-message").hide();
+}
+
 $(document).ready(function() {
 	$('#menuTabs li a').click(function(e) {
 		e.preventDefault()
 		$(this).tab('show')
 	});
-
+	
+	$(document).ajaxError(function() {
+		showError();
+	});
+	
+	$(document).ajaxStart(function() {
+		closeError();
+	});
+	
+	$("#error-message").alert();
 });
 
 function evaluarMetodo1(nombreMetodo, idFormulario, idGrafico, idTabla) {
